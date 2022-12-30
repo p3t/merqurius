@@ -1,0 +1,22 @@
+version: "3.8"
+#networks:
+#  default:
+#    external: true
+#    name: mvl1-eno1
+services:
+  mqtt:
+    image: eclipse-mosquitto:2.0.15
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+    volumes:
+      - ./x-dev/mosquitto:/mosquitto/config/
+#      - ./data:/mosquitto/data
+#      - ./log:/mosquitto/log
+    ports:
+      - "1884:1883/tcp"
+      - "9002:9001/tcp"
+#    command: ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"]
