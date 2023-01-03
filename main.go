@@ -6,10 +6,10 @@ import (
 	"os/signal"
 	"syscall"
 
-	"merqurius/client"
-	"merqurius/server"
+	client "github.com/p3t/merqurius/client"
+	server "github.com/p3t/merqurius/server"
 
-	"github.com/logrusorgru/aurora"
+	aurora "github.com/logrusorgru/aurora"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func main() {
 
 	server.Start()
 	if err := client.Connect(); err != nil {
-		fmt.Println(aurora.BgRed(fmt.Sprintf("Client connection error: %s", err)))
+		fmt.Println(aurora.BgRed(fmt.Sprintf("   Client connection error: %s", err)))
 	}
 
 	<-done

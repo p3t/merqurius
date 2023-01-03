@@ -29,19 +29,22 @@ func Connect() error {
 	}
 	opts := mqtt.NewClientOptions()
 	opts.AddBroker(fmt.Sprintf("tcp://%s:%d", broker, port))
-	opts.SetKeepAlive(2 * time.Second)
+	opts.SetKeepAlive(60 * time.Second)
 	opts.SetDefaultPublishHandler(f)
-	opts.SetPingTimeout(1 * time.Second)
-	opts.SetClientID("nammb@" + hostname)
+	opts.SetPingTimeout(2 * time.Second)
+	opts.SetClientID("merqurius@" + hostname)
 	opts.SetAutoReconnect(false)
 	// opts.SetMaxReconnectInterval()
 	opts.SetPassword("mqtt")
 	opts.SetUsername("mqtt")
 
+	opts.SetDefaultPublishHandler(f)
+
 	client = mqtt.NewClient(opts)
 	if token := client.Connect(); token.Wait() && token.Error() != nil {
 		return token.Error()
 	}
+
 	return nil
 }
 
