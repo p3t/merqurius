@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestServerListnes(t *testing.T) {
+func TestServerListens(t *testing.T) {
 	assert := assert.New(t)
 	done := make(chan bool)
 

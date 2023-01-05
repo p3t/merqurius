@@ -14,10 +14,11 @@ var server *mqtt.Server
 
 func Start() {
 
-	fmt.Println(aurora.Magenta("Mochi MQTT Server initializing..."), aurora.Cyan("TCP"))
+	fmt.Println(aurora.Magenta("MQTT Server initializing..."), aurora.Cyan("TCP"))
 
-	sOpts := mqtt.New().Options
-	server = mqtt.NewServer(sOpts)
+	opts := mqtt.New().Options
+	server = mqtt.NewServer(opts)
+	//_ = server.AddHook(new(auth.Allow), nil)
 
 	tcp := listeners.NewTCP("t1", "localhost:1883")
 	err := server.AddListener(tcp, nil)
